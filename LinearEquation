@@ -1,0 +1,74 @@
+public class LinearEquation {
+    private final int x1;
+    private final int x2;
+    private final int y1;
+    private final int y2;
+
+    public LinearEquation(int x1, int y1, int x2, int y2) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+    }
+    public double slope(){
+        double xDist = (double) x2 - x1;
+        double yDist = (double) y2 - y1;
+        double Slope = yDist / xDist;
+        return Slope;
+    }
+
+    public double distance(){
+        double sideA = Math.abs(y2 - y1);
+        double sideB = Math.abs(y2 - y1);
+        double sideCSquared = Math.pow(sideA, 2) + Math.pow(sideB, 2);
+        double sideC = Math.sqrt(sideCSquared);
+        return sideC;
+    }
+
+    public double yIntercept(){
+        double xDist1 = (double) x2 - x1;
+        double yDist1 = (double) y2 - y1;
+        double Slope1 = yDist1 / xDist1;
+        double Yint = (double) y1 - (Slope1 * x1);
+        return Yint;
+    }
+
+    public String equation(){
+        double xDist2 = (double) x2 - x1;
+        double yDist2 = (double) y2 - y1;
+        double Slope2 = yDist2 / xDist2;
+        double Yint2 = (double) y1 - (Slope2 * x1);
+        if (Yint2 == 0){
+            return "y = " + Slope2 + "x";
+        } else if (Slope2 == 0){
+            return "y = " + Yint2;
+        } else {
+            return "y = " + Slope2 + "x + " + Yint2;
+        }
+    }
+
+    public String coordinateForX(double x){
+        double xDist3 = (double) x2 - x1;
+        double yDist3 = (double) y2 - y1;
+        double Slope3 = yDist3 / xDist3;
+        double Yint3 = (double) y1 - (Slope3 * x1);
+
+
+        double X = x;
+        double MX = Slope3 * x;
+        double MXplusB = MX + Yint3;
+        return "(" + x + ", " + MXplusB + ")";
+    }
+
+    public String lineInfo(){
+        double xDist4 = (double) x2 - x1;
+        double yDist4 = (double) y2 - y1;
+        double Slope4 = yDist4 / xDist4;
+        double Yint4 = (double) y1 - (Slope4 * x1);
+        double sideA1 = Math.abs(y2 - y1);
+        double sideB1 = Math.abs(y2 - y1);
+        double sideCSquared1 = Math.pow(sideA1, 2) + Math.pow(sideB1, 2);
+        double sideC1 = Math.sqrt(sideCSquared1);
+        return "The two points are: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ") \n The equation of the line between these points is: y = " + Slope4 + "x + " + Yint4 + "\n The y-intercept of this line is: " + Yint4 + "\n The slope of this line is: " + Slope4 + "\n The distance between these points is " + sideC1;
+    }
+}
