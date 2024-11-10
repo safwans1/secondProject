@@ -1,0 +1,53 @@
+import java.util.Scanner;
+public class LinearEquationLogic {
+    private LinearEquation equation;
+    private final Scanner scan;
+
+    public LinearEquationLogic() {
+        equation = null;
+        scan = new Scanner(System.in);
+    }
+
+    public void start() {
+        getCoords();
+    }
+
+    public void getCoords() {
+        System.out.print("Enter coordinate 1 in (x, y) form: ");
+        String coord1 = scan.nextLine();
+        System.out.print("Enter coordinate 2 in (x, y) form: ");
+        String coord2 = scan.nextLine();
+
+        int coord1Len = coord1.length() - 1;
+        int comma1Idx = coord1.indexOf(",");
+        int comma1IdxAfter = comma1Idx + 1;
+        String xA = coord1.substring(1, comma1Idx);
+        String yA = coord1.substring(comma1IdxAfter, coord1Len);
+        int x1 = Integer.parseInt(xA);
+        int y1 = Integer.parseInt(yA);
+
+        int coord2Len = coord2.length() - 1;
+        int comma2Idx = coord2.indexOf(",");
+        int comma2IdxAfter = comma2Idx + 1;
+        String xB = coord2.substring(1, comma2Idx);
+        String yB = coord2.substring(comma2IdxAfter, coord2Len);
+        int x2 = Integer.parseInt(xB);
+        int y2 = Integer.parseInt(yB);
+
+        if (x1 == x2){
+            int dist = Math.abs(y2 - y1);
+            String lineInfo = "The two points are: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ") \n The equation of the line between these points is: x = " + x1 + "\n The y-intercept of this line is nonexistent \n The slope of this line is undefined \n The distance between these points is " + dist;
+            System.out.println(lineInfo);
+        } else {
+            equation = new LinearEquation(x1, y1, x2, y2);
+            System.out.println(equation.lineInfo());
+            xPoint();
+        }
+    }
+
+    public void xPoint() {
+        System.out.print("Enter an x-coordinate: ");
+        int coord = scan.nextInt();
+        System.out.println(equation.coordinateForX(coord));
+    }
+}
