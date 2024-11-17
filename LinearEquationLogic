@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class LinearEquationLogic {
     private LinearEquation equation;
-    private final Scanner scan;
+    private Scanner scan;
 
     public LinearEquationLogic() {
         equation = null;
@@ -20,7 +20,7 @@ public class LinearEquationLogic {
 
         int coord1Len = coord1.length() - 1;
         int comma1Idx = coord1.indexOf(",");
-        int comma1IdxAfter = comma1Idx + 1;
+        int comma1IdxAfter = comma1Idx + 2;
         String xA = coord1.substring(1, comma1Idx);
         String yA = coord1.substring(comma1IdxAfter, coord1Len);
         int x1 = Integer.parseInt(xA);
@@ -28,12 +28,11 @@ public class LinearEquationLogic {
 
         int coord2Len = coord2.length() - 1;
         int comma2Idx = coord2.indexOf(",");
-        int comma2IdxAfter = comma2Idx + 1;
+        int comma2IdxAfter = comma2Idx + 2;
         String xB = coord2.substring(1, comma2Idx);
         String yB = coord2.substring(comma2IdxAfter, coord2Len);
         int x2 = Integer.parseInt(xB);
         int y2 = Integer.parseInt(yB);
-
         if (x1 == x2){
             int dist = Math.abs(y2 - y1);
             String lineInfo = "The two points are: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ") \n The equation of the line between these points is: x = " + x1 + "\n The y-intercept of this line is nonexistent \n The slope of this line is undefined \n The distance between these points is " + dist;
@@ -49,5 +48,22 @@ public class LinearEquationLogic {
         System.out.print("Enter an x-coordinate: ");
         int coord = scan.nextInt();
         System.out.println(equation.coordinateForX(coord));
+        Restart();
+    }
+
+    public void Restart() {
+        System.out.print("Would you like to go again? y/n ");
+        scan.nextLine();
+        String input = scan.nextLine();
+        while (!(input.equals("y") || input.equals("n"))){
+            System.out.print("Invalid answer, try again! ");
+            input = scan.nextLine();
+        }
+        if (input.equals("y")){
+            start();
+        }
+        else {
+            System.out.print("Thank you for trying out this program!");
+        }
     }
 }
